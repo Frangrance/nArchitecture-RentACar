@@ -8,6 +8,7 @@ namespace Domain.Enums
 {
     public enum City
     {
-        Tekirdağ = 59
+        Tekirdağ = 59,
+        İstanbul = 34
     }
 }
