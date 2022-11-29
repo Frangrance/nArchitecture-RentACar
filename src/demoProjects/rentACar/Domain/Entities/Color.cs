@@ -7,20 +7,22 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Brand:Entity
+    public class Color : Entity
     {
         public string Name { get; set; }
-        public virtual ICollection<Model> Models { get; set; }
 
-        public Brand()
+        public virtual ICollection<Car> Cars { get; set; }
+
+        public Color()
         {
-            Models = new HashSet<Model>();
+            Cars = new HashSet<Car>();
         }
 
-        public Brand(int id, string name):this()
+        public Color(int id, string name) : this()
         {
             Id = id;
             Name = name;
         }
     }
+
 }
