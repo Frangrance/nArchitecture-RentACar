@@ -1,7 +1,18 @@
 ﻿using Application.Features.Auths.Rules;
 using Application.Features.Brands.Rules;
+using Application.Services.AdditionalServiceService;
 using Application.Services.AuthService;
+using Application.Services.CarService;
+using Application.Services.CustomerService;
+using Application.Services.FindeksCreditRateService;
+using Application.Services.InvoiceService;
+using Application.Services.ModelService;
+using Application.Services.RentalService;
+using Application.Services.RentalsIAdditionalServiceService;
+using Application.Services.UserService;
 using Core.Application.Pipelines.Validation;
+using Core.CrossCuttingConcerns.Logging.Serilog.Logger;
+using Core.CrossCuttingConcerns.Logging.Serilog;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +22,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Services.AuthService;
 
 namespace Application
 {
@@ -22,8 +34,25 @@ namespace Application
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
-            services.AddScoped<BrandBusinessRules>();
+            //services.AddScoped<AdditionalServiceBusinessRules>();
             services.AddScoped<AuthBusinessRules>();
+            services.AddScoped<BrandBusinessRules>();
+            //services.AddScoped<CarBusinessRules>();
+            //services.AddScoped<CarDamageBusinessRules>();
+            //services.AddScoped<ColorBusinessRules>();
+            //services.AddScoped<CorporateCustomerBusinessRules>();
+            //services.AddScoped<CustomerBusinessRules>();
+            //services.AddScoped<FindeksCreditRateBusinessRules>();
+            //services.AddScoped<FuelBusinessRules>();
+            //services.AddScoped<IndividualCustomerBusinessRules>();
+            //services.AddScoped<InvoiceBusinessRules>();
+            //services.AddScoped<ModelBusinessRules>();
+            //services.AddScoped<RentalBusinessRules>();
+            //services.AddScoped<RentalBranchBusinessRules>();
+            //services.AddScoped<OperationClaimBusinessRules>();
+            //services.AddScoped<UserBusinessRules>();
+            //services.AddScoped<UserOperationClaimBusinessRules>();
+            //services.AddScoped<TransmissionBusinessRules>();
 
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
@@ -33,7 +62,22 @@ namespace Application
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
-            services.AddScoped<IAuthService,AuthManager>();
+           
+
+            services.AddScoped<IAdditionalServiceService, AdditionalServiceManager>();
+            services.AddScoped<IAuthService, AuthManager>();
+            services.AddScoped<ICarService, CarManager>();
+            services.AddScoped<ICustomerService, CustomerManager>();
+            services.AddScoped<IFindeksCreditRateService, FindeksCreditRateManager>();
+            services.AddScoped<IInvoiceService, InvoiceManager>();
+            services.AddScoped<IModelService, ModelManager>();
+            services.AddScoped<IRentalService, RentalManager>();
+            services.AddScoped<IRentalsAdditionalServiceService, RentalsAdditionalServiceManager>();
+            services.AddScoped<IUserService, UserManager>();
+
+            //services.AddSingleton<IMailService, MailKitMailService>();
+            //services.AddSingleton<LoggerServiceBase, FileLogger>();
+            //services.AddSingleton<IElasticSearch, ElasticSearchManager>();
 
             return services;
 
