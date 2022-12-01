@@ -13,11 +13,11 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Brands.Queries.GetByIdBrand
 {
-    public class GetByIdBrandQuery: IRequest<BrandGetByIdDto>
+    public class GetByIdBrandQuery: IRequest<BrandDto>
     {
         public int Id { get; set; }
 
-        public class GetByIdBrandQueryHandler : IRequestHandler<GetByIdBrandQuery, BrandGetByIdDto>
+        public class GetByIdBrandQueryHandler : IRequestHandler<GetByIdBrandQuery, BrandDto>
         {
             private readonly IBrandRepository _brandRepository;
             private readonly IMapper _mapper;
@@ -30,13 +30,13 @@ namespace Application.Features.Brands.Queries.GetByIdBrand
                 _brandBusinessRules = brandBusinessRules;
             }
 
-            public async Task<BrandGetByIdDto> Handle(GetByIdBrandQuery request, CancellationToken cancellationToken)
+            public async Task<BrandDto> Handle(GetByIdBrandQuery request, CancellationToken cancellationToken)
             {
                 Brand? brand = await _brandRepository.GetAsync(b=>b.Id == request.Id);
                 
-                _brandBusinessRules.BrandShouldExistsWhenRequested(brand);
+                _brandBusinessRules.BrandIdShouldExistsWhenSelected(request.Id);
 
-                BrandGetByIdDto brandGetByIdDto = _mapper.Map<BrandGetByIdDto>(brand);
+                BrandDto brandGetByIdDto = _mapper.Map<BrandDto>(brand);
                 return brandGetByIdDto;
             }
         }

@@ -7,21 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\AdditionalServices\Commands\" />
     <Folder Include="Features\AdditionalServices\Constants\" />
-    <Folder Include="Features\AdditionalServices\Dtos\" />
-    <Folder Include="Features\AdditionalServices\Models\" />
-    <Folder Include="Features\AdditionalServices\Rules\" />
-    <Folder Include="Features\AdditionalServices\Queries\" />
-    <Folder Include="Features\AdditionalServices\Profiles\" />
-    <Folder Include="Features\Brands\Constants\" />
-    <Folder Include="Features\CarDamages\Commands\" />
-    <Folder Include="Features\CarDamages\Constants\" />
-    <Folder Include="Features\CarDamages\Dtos\" />
-    <Folder Include="Features\CarDamages\Models\" />
-    <Folder Include="Features\CarDamages\Profiles\" />
-    <Folder Include="Features\CarDamages\Queries\" />
-    <Folder Include="Features\CarDamages\Rules\" />
     <Folder Include="Features\Cars\Commands\" />
     <Folder Include="Features\Cars\Constants\" />
     <Folder Include="Features\Cars\Dtos\" />
@@ -29,27 +15,9 @@
     <Folder Include="Features\Cars\Profiles\" />
     <Folder Include="Features\Cars\Queries\" />
     <Folder Include="Features\Cars\Rules\" />
-    <Folder Include="Features\Colors\Commands\" />
-    <Folder Include="Features\Colors\Constants\" />
-    <Folder Include="Features\Colors\Dtos\" />
-    <Folder Include="Features\Colors\Models\" />
-    <Folder Include="Features\Colors\Profiles\" />
-    <Folder Include="Features\Colors\Queries\" />
-    <Folder Include="Features\Colors\Rules\" />
-    <Folder Include="Features\CorporateCustomers\Commands\" />
-    <Folder Include="Features\CorporateCustomers\Constants\" />
-    <Folder Include="Features\CorporateCustomers\Dtos\" />
-    <Folder Include="Features\CorporateCustomers\Models\" />
-    <Folder Include="Features\CorporateCustomers\Profiles\" />
-    <Folder Include="Features\CorporateCustomers\Queries\" />
-    <Folder Include="Features\CorporateCustomers\Rules\" />
-    <Folder Include="Features\Customers\Commands\" />
-    <Folder Include="Features\Customers\Constants\" />
-    <Folder Include="Features\Customers\Dtos\" />
     <Folder Include="Features\Customers\Models\" />
     <Folder Include="Features\Customers\Profiles\" />
     <Folder Include="Features\Customers\Queries\" />
-    <Folder Include="Features\Customers\Rules\" />
     <Folder Include="Features\FindeksCreditRates\Commands\" />
     <Folder Include="Features\FindeksCreditRates\Constants\" />
     <Folder Include="Features\FindeksCreditRates\Dtos\" />

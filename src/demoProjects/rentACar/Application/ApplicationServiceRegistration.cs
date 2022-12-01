@@ -23,6 +23,12 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Services.AuthService;
+using Application.Features.AdditionalServices.Rules;
+using Core.Application.Pipelines.Authorization;
+using Application.Features.CarDamages.Rules;
+using Application.Features.Colors.Rules;
+using Application.Features.CorporateCustomers.Rules;
+using Application.Features.Customers.Rules;
 
 namespace Application
 {
@@ -34,14 +40,14 @@ namespace Application
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
-            //services.AddScoped<AdditionalServiceBusinessRules>();
+            services.AddScoped<AdditionalServiceBusinessRules>();
             services.AddScoped<AuthBusinessRules>();
             services.AddScoped<BrandBusinessRules>();
             //services.AddScoped<CarBusinessRules>();
-            //services.AddScoped<CarDamageBusinessRules>();
-            //services.AddScoped<ColorBusinessRules>();
-            //services.AddScoped<CorporateCustomerBusinessRules>();
-            //services.AddScoped<CustomerBusinessRules>();
+            services.AddScoped<CarDamageBusinessRules>();
+            services.AddScoped<ColorBusinessRules>();
+            services.AddScoped<CorporateCustomerBusinessRules>();
+            services.AddScoped<CustomerBusinessRules>();
             //services.AddScoped<FindeksCreditRateBusinessRules>();
             //services.AddScoped<FuelBusinessRules>();
             //services.AddScoped<IndividualCustomerBusinessRules>();
@@ -56,7 +62,7 @@ namespace Application
 
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheRemovingBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));

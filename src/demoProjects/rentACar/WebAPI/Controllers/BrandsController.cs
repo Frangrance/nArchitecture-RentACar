@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetById([FromRoute] GetByIdBrandQuery getByIdBrandQuery)
         {
-            BrandGetByIdDto brandGetByIdDto = await Mediator.Send(getByIdBrandQuery);
+            BrandDto brandGetByIdDto = await Mediator.Send(getByIdBrandQuery);
             return Ok(brandGetByIdDto);
         }
     }
