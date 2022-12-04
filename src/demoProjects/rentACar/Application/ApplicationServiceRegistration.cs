@@ -33,6 +33,17 @@ using Application.Features.FindeksCreditRates.Rules;
 using Application.Features.Invoices.Rules;
 using Application.Features.IndividualCustomers.Rules;
 using Application.Features.Fuels.Rules;
+using Application.Features.RentalBranches.Rules;
+using Application.Features.OperationClaims.Rules;
+using Application.Features.Users.Rules;
+using Application.Features.UserOperationClaims.Rules;
+using Application.Features.Transmissions.Rules;
+using Application.Features.Cars.Rules;
+using Application.Features.Models.Rules;
+using Core.Application.Pipelines.Caching;
+using Core.Application.Pipelines.Logging;
+using Core.Mailing;
+using Core.Mailing.MailKitImplementations;
 
 namespace Application
 {
@@ -47,7 +58,7 @@ namespace Application
             services.AddScoped<AdditionalServiceBusinessRules>();
             services.AddScoped<AuthBusinessRules>();
             services.AddScoped<BrandBusinessRules>();
-            //services.AddScoped<CarBusinessRules>();
+            services.AddScoped<CarBusinessRules>();
             services.AddScoped<CarDamageBusinessRules>();
             services.AddScoped<ColorBusinessRules>();
             services.AddScoped<CorporateCustomerBusinessRules>();
@@ -56,20 +67,20 @@ namespace Application
             services.AddScoped<FuelBusinessRules>();
             services.AddScoped<IndividualCustomerBusinessRules>();
             services.AddScoped<InvoiceBusinessRules>();
-            //services.AddScoped<ModelBusinessRules>();
-            //services.AddScoped<RentalBusinessRules>();
-            //services.AddScoped<RentalBranchBusinessRules>();
-            //services.AddScoped<OperationClaimBusinessRules>();
-            //services.AddScoped<UserBusinessRules>();
-            //services.AddScoped<UserOperationClaimBusinessRules>();
-            //services.AddScoped<TransmissionBusinessRules>();
+            services.AddScoped<ModelBusinessRules>();
+            services.AddScoped<Features.Rentals.Rules.RentalBusinessRules>();
+            services.AddScoped<RentalBranchBusinessRules>();
+            services.AddScoped<OperationClaimBusinessRules>();
+            services.AddScoped<UserBusinessRules>();
+            services.AddScoped<UserOperationClaimBusinessRules>();
+            services.AddScoped<TransmissionBusinessRules>();
 
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
-            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
-            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheRemovingBehavior<,>));
-            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheRemovingBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
            
@@ -85,8 +96,8 @@ namespace Application
             services.AddScoped<IRentalsAdditionalServiceService, RentalsAdditionalServiceManager>();
             services.AddScoped<IUserService, UserManager>();
 
-            //services.AddSingleton<IMailService, MailKitMailService>();
-            //services.AddSingleton<LoggerServiceBase, FileLogger>();
+            services.AddSingleton<IMailService, MailKitMailService>();
+            services.AddSingleton<LoggerServiceBase, FileLogger>();
             //services.AddSingleton<IElasticSearch, ElasticSearchManager>();
 
             return services;
