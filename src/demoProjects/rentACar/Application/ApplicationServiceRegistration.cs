@@ -44,6 +44,7 @@ using Core.Application.Pipelines.Caching;
 using Core.Application.Pipelines.Logging;
 using Core.Mailing;
 using Core.Mailing.MailKitImplementations;
+using Application.Features.Rentals.Rules;
 
 namespace Application
 {
@@ -68,7 +69,7 @@ namespace Application
             services.AddScoped<IndividualCustomerBusinessRules>();
             services.AddScoped<InvoiceBusinessRules>();
             services.AddScoped<ModelBusinessRules>();
-            services.AddScoped<Features.Rentals.Rules.RentalBusinessRules>();
+            services.AddScoped<RentalBusinessRules>();
             services.AddScoped<RentalBranchBusinessRules>();
             services.AddScoped<OperationClaimBusinessRules>();
             services.AddScoped<UserBusinessRules>();
@@ -83,7 +84,7 @@ namespace Application
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
-           
+
 
             services.AddScoped<IAdditionalServiceService, AdditionalServiceManager>();
             services.AddScoped<IAuthService, AuthManager>();

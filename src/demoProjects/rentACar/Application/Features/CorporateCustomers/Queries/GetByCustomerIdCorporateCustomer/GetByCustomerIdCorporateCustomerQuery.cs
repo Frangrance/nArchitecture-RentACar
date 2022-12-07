@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.CorporateCustomers.Queries.GetByCustomerIdCorporateCustomer
 {
-    internal class GetByCustomerIdCorporateCustomerQuery : IRequest<CorporateCustomerDto>
+    public class GetByCustomerIdCorporateCustomerQuery : IRequest<CorporateCustomerDto>
     {
         public int CustomerId { get; set; }
 

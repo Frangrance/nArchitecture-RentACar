@@ -35,7 +35,7 @@ namespace Application.Features.Auths.Commands.Register
 
             public async Task<RegisteredDto> Handle(RegisterCommand request, CancellationToken cancellationToken)
             {
-                await _authBusinessRules.EmailCanNotBeDublicatedWhenRegistered(request.UserForRegisterDto.Email);
+                await _authBusinessRules.UserEmailShouldBeNotExists(request.UserForRegisterDto.Email);
                 byte[] passwordHash, passwordSalt;
                 HashingHelper.CreatePasswordHash(request.UserForRegisterDto.Password, out passwordHash, out passwordSalt);
 

@@ -1,4 +1,5 @@
 ﻿using Application.Features.Customers.Dtos;
+using Application.Features.IndividualCustomers.Dtos;
 using Application.Features.IndividualCustomers.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -12,11 +13,11 @@ using System.Threading.Tasks;
 
 namespace Application.Features.IndividualCustomers.Queries.GetByCustomerIdIndividualCustomer
 {
-    public class GetByCustomerIdIndividualCustomerQuery : IRequest<IndividualCustomer>
+    public class GetByCustomerIdIndividualCustomerQuery : IRequest<IndividualCustomerDto>
     {
         public int CustomerId { get; set; }
 
-        public class GetByCustomerIdIndividualCustomerQueryHandler : IRequestHandler<GetByCustomerIdIndividualCustomerQuery, IndividualCustomer>
+        public class GetByCustomerIdIndividualCustomerQueryHandler : IRequestHandler<GetByCustomerIdIndividualCustomerQuery, IndividualCustomerDto>
         {
             private readonly IIndividualCustomerRepository _individualCustomerRepository;
             private readonly IMapper _mapper;
@@ -29,11 +30,11 @@ namespace Application.Features.IndividualCustomers.Queries.GetByCustomerIdIndivi
                 _individualCustomerBusinessRules = individualCustomerBusinessRules;
             }
 
-            public async Task<IndividualCustomer> Handle(GetByCustomerIdIndividualCustomerQuery request, CancellationToken cancellationToken)
+            public async Task<IndividualCustomerDto> Handle(GetByCustomerIdIndividualCustomerQuery request, CancellationToken cancellationToken)
             { 
                 IndividualCustomer? individualCustomer = await _individualCustomerRepository.GetAsync(i => i.CustomerId == request.CustomerId);
                 await _individualCustomerBusinessRules.IndividualCustomerShouldBeExist(individualCustomer);
-                IndividualCustomer mappedCustomerDto =_mapper.Map<IndividualCustomer>(individualCustomer);
+                IndividualCustomerDto mappedCustomerDto =_mapper.Map<IndividualCustomerDto>(individualCustomer);
                 return mappedCustomerDto;
             }
         }

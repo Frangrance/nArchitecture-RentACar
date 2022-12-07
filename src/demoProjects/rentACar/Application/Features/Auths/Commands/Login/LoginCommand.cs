@@ -2,6 +2,7 @@
 using Application.Features.Auths.Rules;
 using Application.Services.AuthService;
 using Application.Services.UserService;
+using Core.CrossCuttingConcerns.Exceptions;
 using Core.Security.Dtos;
 using Core.Security.Entities;
 using Core.Security.Enums;
@@ -37,7 +38,8 @@ namespace Application.Features.Auths.Commands.Login
             public async Task<LoggedDto> Handle(LoginCommand request, CancellationToken cancellationToken)
             {
                 User? user = await _userService.GetByEmail(request.UserForLoginDto.Email);
-                await _authBusinessRules.UserShouldBeExist(user);
+                await _authBusinessRules.UserShouldBeExists(user);
+                
                 await _authBusinessRules.UserPasswordShouldBeMatch(user.Id, request.UserForLoginDto.Password);
 
                 LoggedDto loggedDto = new();
@@ -62,6 +64,11 @@ namespace Application.Features.Auths.Commands.Login
                 loggedDto.AccessToken = createdAccessToken;
                 loggedDto.RefreshToken = addedRefreshToken;
                 return loggedDto;
+            }
+            public Task UserShouldBeExists(User? user)
+            {
+                if (user == null) throw new BusinessException("User don't exists.");
+                return Task.CompletedTask;
             }
         }
     }

@@ -1,4 +1,9 @@
-﻿using Application.Features.Models.Models;
+﻿using Application.Features.Models.Commands.CreateModel;
+using Application.Features.Models.Commands.DeleteModel;
+using Application.Features.Models.Commands.UpdateModel;
+using Application.Features.Models.Dtos;
+using Application.Features.Models.Models;
+using Application.Features.Models.Queries.GetByIdModel;
 using Application.Features.Models.Queries.GetListModel;
 using Application.Features.Models.Queries.GetListModelByDynamic;
 using Core.Application.Requests;
@@ -25,6 +30,30 @@ namespace WebAPI.Controllers
         {
             GetListModelByDynamicQuery getListByDynamicModelQuery = new GetListModelByDynamicQuery { PageRequest = pageRequest, Dynamic = dynamic };
             ModelListModel result = await Mediator.Send(getListByDynamicModelQuery);
+            return Ok(result);
+        }
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetById([FromRoute] GetByIdModelQuery getByIdModelQuery)
+        {
+            ModelDto result = await Mediator.Send(getByIdModelQuery);
+            return Ok(result);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] CreateModelCommand createModelCommand)
+        {
+            CreatedModelDto result = await Mediator.Send(createModelCommand);
+            return Created("",result);
+        }
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromBody] DeleteModelCommand deleteModelCommand)
+        {
+            DeletedModelDto result = await Mediator.Send(deleteModelCommand);
+            return Ok(result);
+        }
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateModelCommand updateModelCommand)
+        {
+            UpdatedModelDto result = await Mediator.Send(updateModelCommand);
             return Ok(result);
         }
     }
